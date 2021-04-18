@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Loader from "react-loader-spinner";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
+import { getDataFromServer } from './api/api';
+import { TableWithData } from './components/TableWithData';
 
-function App() {
+const App: React.FC = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getDataFromServer()
+      .then(setData);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {data.length ? (
+        <div className="App">
+          <TableWithData data={data} />
+        </div>
+        ) : (
+          <div className="loader">
+            <Loader
+              type="Circles"
+              height="200"
+              width="200"
+              color="#696969"
+            />
+          </div>
+        )}
+    </>
   );
 }
 
