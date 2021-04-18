@@ -1,4 +1,4 @@
-const URL = 'http://fs.mh.net.ua/ajax/lsjson.php?dir=global/video&idu=1';
+const URL = 'https://fs.mh.net.ua/ajax/lsjson.php?dir=global/video&idu=1';
 
 // <----- I use a delay to display the downloaded data smoothly -----> \\
 
